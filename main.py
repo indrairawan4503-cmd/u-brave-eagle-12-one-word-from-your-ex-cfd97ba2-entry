@@ -21,7 +21,9 @@ on every run where the output directory is writable.
 import os
 import sys
 
-WORD = "almost"
+WORD = "almost"  # lowercase on purpose: the ex's spoken word mid-sentence
+# ("he was… almost"), a confession rather than a title — "Almost" would
+# read as a label. 6 bytes also wins exact ties (smaller text places first).
 
 
 def write_output() -> None:
