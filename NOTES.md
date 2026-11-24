@@ -92,11 +92,19 @@ one concept to v5–v8 confirmed the first idea was also the strongest —
 the refinements around it all lost something, so the plain lowercase word
 ships as-is.
 
-## Validation
+## Validation (reviser session, 24 Nov 2026 ~20:2x WIB — post-refactor)
 
-- `python3 main.py` run twice → byte-identical `/output/entry.txt`
-  ("almost", 6 bytes, no trailing newline).
-- Grader simulation: repo copied read-only, `main.py` exits 0,
-  `/output/entry.txt` still "almost".
+- Baseline before edits: `python3 main.py` once → `/output/entry.txt`
+  md5 `5634275d694f8665957746c9619132f0`, sha256
+  `9602eec8ca1a03bb0860336713cade669d4ed654145fe3fc9e494e888b1a0909`,
+  6 bytes, exit 0.
+- After refactor (`write_output()` helper + expanded docstring):
+  `python3 main.py` run twice → exit 0 both times,
+  `/output/entry.txt` md5 `5634275d694f8665957746c9619132f0` both runs —
+  byte-identical, md5 UNCHANGED from baseline.
+- Grader simulation: repo copied (without .git) to a temp dir, made
+  read-only (`chmod -R a-w`), `python3 main.py` → exit 0,
+  `/output/entry.txt` md5 `5634275d694f8665957746c9619132f0`,
+  byte-identical to repo-root `entry.txt` (`cmp` clean).
 - Gate: 6 chars (1–24), exactly one word, no spaces/punctuation.
 - `entry.txt` in repo root is byte-identical to `/output/entry.txt`.
